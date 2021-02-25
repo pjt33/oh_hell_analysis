@@ -134,3 +134,46 @@ def bid_threshold(n, bid_seq):
 			return my_card
 
 	return upper_limit
+
+
+def expected_scores(n):
+	sigma_scores = Counter()
+	sigma_1 = 0
+
+	for bid_seq in product([0, 1], repeat = n):
+		thresholds = [bid_threshold(n, bid_seq[:j]) for j in range(n)]
+		if 0 in thresholds:
+			continue
+
+		ranges = [[(threshold, 50), (0, threshold-1)][bid] for bid, threshold in zip(bid_seq, thresholds)]
+
+		# Two special cases to handle the dealer not being allowed to make the total bid correct
+		if sum(bid_seq) == 1:
+			continue
+		elif sum(bid_seq[:-1]) + (1 - bid_seq[-1]) == 1:
+			ranges[-1] = (0, 50)
+
+		# First player can't have cards above 24, because their card (if not a trump) determines the trick's suit.
+		if bid_seq[0] == 0:
+			ranges[0] = (thresholds[0], 24)
+
+		range_masks = [range_to_mask(lo, hi) for lo, hi in ranges]
+		disjoint_masks = deintersect_masks(range_masks)
+		split_masks = [[dm for dm in disjoint_masks if dm & mask] for mask in range_masks]
+
+		wins = [0] * n
+		for assignments in product(*split_masks):
+			sub_assignments = Counter(assignments)
+			min_key = min(assignments)
+			wins_per = count_assignments(sub_assignments) // sub_assignments[min_key]
+			for i in range(n):
+				if assignments[i] == min_key:
+					wins[i] += wins_per
+
+		# Scoring for this bid sequence
+		seq_weight = sum(wins)
+		sigma_1 += seq_weight
+		for i, bid in enumerate(bid_seq):
+			sigma_scores[i] += wins[i] + 10 * [seq_weight - wins[i], wins[i]][bid]
+
+	return [sigma_scores[i] / sigma_1 for i in range(n)]

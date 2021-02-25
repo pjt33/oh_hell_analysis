@@ -117,6 +117,20 @@ it.
     (0, 0, 0, 0, 1, 1)        . . . . Q
     (0, 0, 0, 1, 0, 1)        . . . . Q
 
-    
+
 When previous bids total 3 or more: bid 1 only with the top trump. Many of these cases are impossible anyway if
 everyone follows this guide.
+
+
+Expected scores
+---------------
+If everyone bids correctly, the expected scores of each player to 2 d.p. are (first player on left, dealer on right):
+
+    n=3    7.58    9.30    3.69
+    n=4    7.75    9.41    9.52    3.81
+    n=5    8.05    9.43    9.52    9.62    3.75
+    n=6    8.32    9.46    9.53    9.60    9.67    3.77
+    n=7    8.54    9.50    9.54    9.60    9.66    9.72    3.80
+
+So the penalty for being first player varies from about 1.18 to 1.77, and for being dealer varies from about 5.61 to
+5.92.
