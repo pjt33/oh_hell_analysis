@@ -59,10 +59,10 @@ When previous bids total 0: dealer bids 0 like it or not (which they don't if th
     -----------------------------------
     ()                        q 3 6 7 8
     (0,)                      2 2 4 6 7
-    (0, 0)                    * 2 2 5 6
-    (0, 0, 0)                 . * 2 3 5
-    (0, 0, 0, 0)              . . * 2 4
-    (0, 0, 0, 0, 0)           . . . * 2
+    (0, 0)                    * 2 3 5 7
+    (0, 0, 0)                 . * 2 4 6
+    (0, 0, 0, 0)              . . * 3 5
+    (0, 0, 0, 0, 0)           . . . * 4
 
 
 When previous bids total 1: dealer bids 1 like it or not (which they don't most of the time).
@@ -76,17 +76,17 @@ When previous bids total 1: dealer bids 1 like it or not (which they don't most 
     (1, 0)                    * 9 J J Q
     
     (0, 0, 1)                 . * 9 T J
-    (0, 1, 0)                 . * 9 J J
+    (0, 1, 0)                 . * T J J
     (1, 0, 0)                 . * T J J
     
-    (0, 0, 0, 1)              . . * 9 T
+    (0, 0, 0, 1)              . . * T T
     (0, 0, 1, 0)              . . * T J
     (0, 1, 0, 0)              . . * T J
     (1, 0, 0, 0)              . . * J J
     
     (0, 0, 0, 0, 1)           . . . * T
     (0, 0, 0, 1, 0)           . . . * T
-    (0, 0, 1, 0, 0)           . . . * T
+    (0, 0, 1, 0, 0)           . . . * J
     (0, 1, 0, 0, 0)           . . . * J
     (1, 0, 0, 0, 0)           . . . * J
 
@@ -109,15 +109,13 @@ it.
     (0, 1, 1, 0)              . . Q K K
     (1, 0, 0, 1)              . . Q K K
     
-    (0, 0, 0, 1, 1)           . . . Q Q
+    (0, 0, 0, 1, 1)           . . . Q K
     (0, 0, 1, 0, 1)           . . . Q K
     (0, 0, 1, 1, 0)           . . . Q K
     (0, 1, 0, 0, 1)           . . . Q K
     
     (0, 0, 0, 0, 1, 1)        . . . . Q
     (0, 0, 0, 1, 0, 1)        . . . . Q
-    (0, 0, 0, 1, 1, 0)        . . . . Q
-    (0, 0, 1, 0, 0, 1)        . . . . Q
 
     
 When previous bids total 3 or more: bid 1 only with the top trump. Many of these cases are impossible anyway if

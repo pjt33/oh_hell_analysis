@@ -77,6 +77,9 @@ def bid_threshold(n, bid_seq):
 		return 0
 
 	ranges = [[(threshold, 50), (0, threshold-1)][bid] for bid, threshold in zip(bid_seq, thresholds)] + [(0, 50)] * (n - i - 1)
+	# First player can't have cards above 24, because their card (if not a trump) determines the trick's suit.
+	if bid_seq and bid_seq[0] == 0:
+		ranges[0] = (thresholds[0], 24)
 	range_masks = [range_to_mask(lo, hi) for lo, hi in ranges]
 
 	# If we're not the first bidder, we only bid on a trump.
